@@ -6,6 +6,7 @@ router.route("/add").post((req, res) => {
     const price = req.body.price;
     const region = req.body.region;
     const date = req.body.date;
+    
     const newServer = new Server({
         name,
         price,
@@ -19,5 +20,10 @@ router.route("/add").post((req, res) => {
         .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/").get((req, res) => {
+    Server.find()
+        .then((response) => res.json(response))
+        .catch((err) => res.status(400).json("Error: " + err));
+});
 
 module.exports = router;
