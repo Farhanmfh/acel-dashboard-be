@@ -1,10 +1,12 @@
 const express = require("express");
-const cors = require("cors");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const mongoURL =
     "mongodb+srv://admin:ZMVW9arZu4uWRTq7@cluster0.mtfk7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const serverRoute = require("./routes/serverRoute");
 
 const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
@@ -22,8 +24,6 @@ mongoose.connect(
         }
     }
 );
-
-const serverRoute = require("./routes/serverRoute");
 
 app.use("/", serverRoute);
 
